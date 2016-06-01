@@ -91,7 +91,8 @@
                 showNoSuggestionNotice: false,
                 noSuggestionNotice: 'No results',
                 orientation: 'bottom',
-                forceFixPosition: false
+                forceFixPosition: false,
+                additionalContainerClass: ''
             };
 
         // Shared variables:
@@ -678,7 +679,11 @@
             this.adjustContainerWidth();
 
             noSuggestionsContainer.detach();
-            container.html(html);
+
+            if (container.find(this.options.additionalContainerClass).length > 0)
+                container.find(this.options.additionalContainerClass).html(html);
+            else
+                container.html(html);
 
             if ($.isFunction(beforeRender)) {
                 beforeRender.call(that.element, container);
